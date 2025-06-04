@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Weather Forecast</h1>
+
+  <% if alert %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_tag(weather_forecast_path, method: :post, class: "form") do %>
+        <div class="form-group">
+          <%= label_tag :address, "Enter Location:" %>
+          <div class="form-text text-muted mb-2">
+            You can enter a city name, zip code, or full address
+          </div>
+          <%= text_field_tag :address, nil, class: "form-control", placeholder: "e.g., New York, 10001, or 123 Main St", required: true %>
+        </div>
+        <%= submit_tag "Forecast", class: "btn btn-primary mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>

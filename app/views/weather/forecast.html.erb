@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center mb-0">
+            Weather Forecast for <%= @weather_data[:city] %><%= ", #{@weather_data[:country]}" if @weather_data[:country].present? %>
+          </h2>
+          <% if @from_cache %>
+            <p class="text-center text-muted mb-0"><small>(Data from cache)</small></p>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <h3><%= number_with_precision(@weather_data[:temperature], precision: 1) %>°C</h3>
+            <p class="text-capitalize mb-1"><%= @weather_data[:description] %></p>
+            <p class="mb-4">Feels like <%= number_with_precision(@weather_data[:feels_like], precision: 1) %>°C</p>
+            
+            <div class="row mb-4">
+              <div class="col-6">
+                <p class="mb-0">Today's Low</p>
+                <h4><%= number_with_precision(@weather_data[:temp_min], precision: 1) %>°C</h4>
+              </div>
+              <div class="col-6">
+                <p class="mb-0">Today's High</p>
+                <h4><%= number_with_precision(@weather_data[:temp_max], precision: 1) %>°C</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <p class="mb-0">Humidity</p>
+                  <h5><%= @weather_data[:humidity] %>%</h5>
+                </div>
+                <div class="mb-3">
+                  <p class="mb-0">Wind Speed</p>
+                  <h5><%= number_with_precision(@weather_data[:wind_speed], precision: 1) %> m/s</h5>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-3">
+                  <p class="mb-0">Sunrise</p>
+                  <h5><%= @weather_data[:sunrise] %></h5>
+                </div>
+                <div class="mb-3">
+                  <p class="mb-0">Sunset</p>
+                  <h5><%= @weather_data[:sunset] %></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to "Search Another Location", weather_index_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
